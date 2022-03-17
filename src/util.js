@@ -14,42 +14,6 @@ export const randomImage = () => {
   return imageArr[random];
 };
 
-export const getDay = (i) => {
-  if (i === 0) {
-    return "Sun";
-  } else if (i === 1) {
-    return "Mon";
-  } else if (i === 2) {
-    return "Tue";
-  } else if (i === 3) {
-    return "Wed";
-  } else if (i === 4) {
-    return "Thu";
-  } else if (i === 5) {
-    return "Fri";
-  } else if (i === 6) {
-    return "Sat";
-  } else {
-    return "Something wrong";
-  }
-};
-
-export const getMonth = (i)=>{
-  if (i === 0) {
-    return "January";
-  } else if (i === 1) {
-    return "Febrary";
-  } else if (i === 2) {
-    return "March";
-  } else if (i === 3) {
-    return "April";
-  } else if (i === 4) {
-    return "May";
-  } else if (i === 5) {
-    return "June";
-  } else if (i === 6) {
-    return "July";
-  } else {
-    return "Something wrong";
-  }
+export const getTemp = (kel)=>{
+  return (kel - 273.15).toFixed(1)
 }
