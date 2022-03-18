@@ -14,6 +14,6 @@ export const randomImage = () => {
   return imageArr[random];
 };
 
-export const getTemp = (kel)=>{
-  return (kel - 273.15).toFixed(1)
-}
+export const getTemp = (kel) => {
+  return (kel - 273.15).toFixed(1);
+};

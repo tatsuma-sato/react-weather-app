@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useGlobalContext } from "../context/context";
+const GOOGLE_API = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const Search = () => {
-  const { city, setCity, isCity, setIsCity } = useGlobalContext();
+  const { city, setCity, isCity, setIsCity, setLocation } = useGlobalContext();
+
+  useEffect(() => {
+    if (!city) return;
+
+    const fetchData = async () => {
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${GOOGLE_API}`
+      );
+      const data = await response.json();
+      const locaiton = data.results[0]?.geometry.location;
+      console.log(locaiton);
+      console.log(data);
+      console.log(isCity);
+      setLocation((prev) => ({
+        ...prev,
+        lat: locaiton.lat,
+        lng: locaiton.lng,
+      }));
+    };
+    fetchData();
+  }, [isCity]);
 
   const onSubmit = (e) => {
     e.preventDefault();

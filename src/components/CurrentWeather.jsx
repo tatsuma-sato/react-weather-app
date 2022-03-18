@@ -69,7 +69,7 @@ const CurrentWeather = ({ weatherData }) => {
               </div>
             </div>
 
-            <div className="stat grid grid-rows-2 grid-flow-col gap-4">
+            <div className="stat grid grid-rows-2 grid-flow-col gap-y-4 gap-x-8">
               <div className="flex flex-col">
                 <h1 className="stat-value text-2xl">{getTemp(temp_max)}°</h1>
                 <p className="stat-desc opacity-100 text-base">High</p>

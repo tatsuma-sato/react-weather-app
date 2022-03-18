@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     bgImage = randomImage();
-  }, []);
+  }, [isCity]);
 
   const randomImage = () => {
     const random = Math.floor(
