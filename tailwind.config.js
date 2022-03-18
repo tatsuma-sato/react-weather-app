@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "gray-opacity": "rgba(192,192,192,0.5)",
+        "gray-opacity": "rgba(192,192,192,0.65)",
       },
     },
   },

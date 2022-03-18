@@ -14,11 +14,7 @@ const Search = () => {
       );
       const data = await response.json();
       const locaiton = data.results[0]?.geometry.location;
-      console.log(locaiton);
-      console.log(data);
-      console.log(isCity);
       setLocation((prev) => ({
-        ...prev,
         lat: locaiton.lat,
         lng: locaiton.lng,
       }));
@@ -43,7 +39,7 @@ const Search = () => {
           className="bg-gray-50 w-64 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           placeholder="Enter a city name"
           required
-          onChange={(e) => setCity(e.target.value)}
+          onChange={(e) => setCity(e.target.value.replace(" ", "+"))}
         />
       </div>
 

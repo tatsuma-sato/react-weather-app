@@ -19,7 +19,7 @@ const WeatherList = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let isMounted = true;
+    // let isMounted = true;
     const fetchCurrentWeather = async () => {
       try {
         setLoading(true);
@@ -27,21 +27,27 @@ const WeatherList = () => {
           `${END_POINT}weather?q=${city}&appid=${APIKEY}`
         );
         const data = await response.json();
-        console.log(data);
         setCurrentWeather(data);
         setLoading(false);
       } catch (error) {
         console.log(error);
+        return (
+          <>
+            <h1>Could not find the city you typed</h1>
+          </>
+        );
       }
     };
     fetchCurrentWeather();
-    return () => {
-      isMounted = false;
-    };
+    console.log("current");
+    // return () => {
+    //   isMounted = false;
+    // };
   }, []);
 
   useEffect(() => {
-    let isMounted = true;
+    // let isMounted = true;
+    console.log("hourly");
     const fetchHoulyWeather = async () => {
       try {
         setLoading(true);
@@ -49,29 +55,41 @@ const WeatherList = () => {
           `${END_POINT}onecall?lat=${location.lat}&lon=${location.lng}&exclude=minutesly&appid=${APIKEY}`
         );
         const data = await response.json();
-        console.log(data);
+
         setHourlyWeather(data.hourly.slice(2, 23));
-        setDailyWeather(data.daily.slice(0, 8));
+        setDailyWeather(data.daily.slice(0, 3));
         setLoading(false);
       } catch (error) {
         console.log(error);
+        return (
+          <>
+            <h1>Could not find the city you typed</h1>
+          </>
+        );
       }
     };
     fetchHoulyWeather();
-    console.log(hourlyWeather);
-    return () => {
-      isMounted = false;
-    };
+    // return () => {
+    //   isMounted = false;
+    // };
   }, []);
 
-  if (loading) return <h3>Loading...</h3>;
+  if (loading || !hourlyWeather || !dailyWeather) return <h3>Loading...</h3>;
 
   return (
     <>
-      <div className="container mx-auto mt-24">
+      <div className="container mx-auto mt-20 text-center">
         <CurrentWeather weatherData={currentWeather} />
         {hourlyWeather && <HourlyWeather data={hourlyWeather} />}
         {dailyWeather && <WeeklyWeather data={dailyWeather} />}
+        <button
+          className="btn btn-ghost border-none mt-5"
+          onClick={() => {
+            setIsCity(false);
+          }}
+        >
+          Back to Search
+        </button>
       </div>
     </>
   );

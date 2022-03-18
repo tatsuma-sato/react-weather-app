@@ -7,16 +7,13 @@ import snow from "../assets/weatherImages/snowflake_trasparent.png";
 import { getTemp } from "../util";
 
 const HourlyWeather = ({ data }) => {
-  console.log(data);
-
   return (
-    <div className="my-4">
+    <div className="my-6">
       <div className="flex gap-4 ">
         {data.map((item, i) => {
           if (i % 3 !== 0) return;
           const { dt, weather, temp } = item;
-          console.log(weather);
-          const main = weather[0]?.main
+          const main = weather[0]?.main;
           const date = new Date(dt * 1000);
           let AmPm = "am";
           let hour = date.getHours();
@@ -24,9 +21,12 @@ const HourlyWeather = ({ data }) => {
             AmPm = "pm";
             hour = (date.getHours() + 24) % 12 || 12;
           }
-          console.log(date.getHours());
+
           return (
-            <div className="flex flex-col p-2 text-center bg-gray-opacity w-32 items-center">
+            <div
+              className="flex flex-col p-2 text-center bg-gray-opacity w-32 items-center "
+              key={i}
+            >
               <p className="mb-2">
                 {hour}
                 {AmPm}

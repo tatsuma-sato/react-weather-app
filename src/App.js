@@ -40,9 +40,10 @@ function App() {
     >
       <div className="backdrop-blur z-10 absolute w-full h-full"></div>
       <div className="absolute z-20 w-full h-full">
-        {/* {isCity ? <WeatherList /> : <Search />} */}
+        {isCity ? <WeatherList /> : <Search />}
         {/* <Search /> */}
-        <WeatherList />
+        {/* <WeatherList /> */}
+        
       </div>
     </div>
   );
