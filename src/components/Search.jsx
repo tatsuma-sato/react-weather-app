@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useGlobalContext } from "../context/context";
+import Error from "./Error";
 const GOOGLE_API = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const Search = () => {

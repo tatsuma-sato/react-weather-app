@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useGlobalContext } from "../context/context";
 import { useFetch } from "../hooks/useFetch";
 import CurrentWeather from "./CurrentWeather";
+import Error from "./Error";
 import HourlyWeather from "./HourlyWeather";
 import WeeklyWeather from "./WeeklyWeather";
 
@@ -30,12 +31,10 @@ const WeatherList = () => {
         setCurrentWeather(data);
         setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.log(error);
-        return (
-          <>
-            <h1>Could not find the city you typed</h1>
-          </>
-        );
+        console.log("aaa");
+        return <h1>Could not find the city you typed</h1>;
       }
     };
     fetchCurrentWeather();
@@ -75,6 +74,8 @@ const WeatherList = () => {
   }, []);
 
   if (loading || !hourlyWeather || !dailyWeather) return <h3>Loading...</h3>;
+
+  if (currentWeather.cod === "404") return <Error />;
 
   return (
     <>

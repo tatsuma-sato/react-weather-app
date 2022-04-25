@@ -7,8 +7,7 @@ import { countries } from "country-data";
 import { getTemp } from "../util";
 import { AiOutlineArrowUp } from "react-icons/ai";
 
-const CurrentWeather = ({ weatherData }) => {
-  // console.log(weatherData);
+const CurrentWeather = ({ weatherData, loading }) => {
 
   const {
     name,
