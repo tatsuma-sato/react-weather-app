@@ -3,12 +3,12 @@ import cloudy from "../assets/weatherImages/cloudy_transparent.png";
 import sunny from "../assets/weatherImages/sun_transparent.png";
 import rainy from "../assets/weatherImages/rain_transparent.png";
 import sun_rain from "../assets/weatherImages/sun-rain_transparent.png";
+import snow from "../assets/weatherImages/snowflake_trasparent.png";
 import { countries } from "country-data";
 import { getTemp } from "../util";
 import { AiOutlineArrowUp } from "react-icons/ai";
 
 const CurrentWeather = ({ weatherData, loading }) => {
-
   const {
     name,
     weather,
@@ -58,7 +58,11 @@ const CurrentWeather = ({ weatherData, loading }) => {
           <div className="weather-stats stats bg-transparent">
             <div className="stat flex items-center ">
               <div className="stat-figure h-32">
-                <img src={sunny} alt="" className="h-full w-full" />
+                <img
+                  src={getWeatherImg(currentWeather)}
+                  alt=""
+                  className="h-full w-full"
+                />
               </div>
               <div className="flex flex-col items-center">
                 <p className="stat-value text-6xl">{temp}°</p>
@@ -115,6 +119,21 @@ const getTime = (timestamp) => {
   const minutes = "0" + date.getMinutes();
   const formattedTime = hours + ":" + minutes.substr(-2);
   return formattedTime;
+};
+
+const getWeatherImg = (weather) => {
+  switch (weather) {
+    case "Rain":
+      return rainy;
+    case "Snow":
+      return snow;
+    case "Clear":
+      return sunny;
+    case "Clouds":
+      return cloudy;
+    default:
+      return null;
+  }
 };
 
 export default CurrentWeather;

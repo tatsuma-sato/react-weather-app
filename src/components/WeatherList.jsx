@@ -6,6 +6,7 @@ import { useFetch } from "../hooks/useFetch";
 import CurrentWeather from "./CurrentWeather";
 import Error from "./Error";
 import HourlyWeather from "./HourlyWeather";
+import Loading from "./Loading";
 import WeeklyWeather from "./WeeklyWeather";
 
 const END_POINT = "http://api.openweathermap.org/data/2.5/";
@@ -32,21 +33,17 @@ const WeatherList = () => {
         setLoading(false);
       } catch (error) {
         setLoading(false);
-        console.log(error);
-        console.log("aaa");
+
         return <h1>Could not find the city you typed</h1>;
       }
     };
     fetchCurrentWeather();
-    console.log("current");
     // return () => {
     //   isMounted = false;
     // };
   }, []);
 
   useEffect(() => {
-    // let isMounted = true;
-    console.log("hourly");
     const fetchHoulyWeather = async () => {
       try {
         setLoading(true);
@@ -73,13 +70,13 @@ const WeatherList = () => {
     // };
   }, []);
 
-  if (loading || !hourlyWeather || !dailyWeather) return <h3>Loading...</h3>;
+  if (loading || !hourlyWeather || !dailyWeather) return <Loading />;
 
   if (currentWeather.cod === "404") return <Error />;
 
   return (
     <>
-      <div className="container mx-auto mt-20 text-center">
+      <div className="container mx-auto mt-20 text-center lg:max-w-6xl">
         <CurrentWeather weatherData={currentWeather} />
         {hourlyWeather && <HourlyWeather data={hourlyWeather} />}
         {dailyWeather && <WeeklyWeather data={dailyWeather} />}

@@ -9,7 +9,7 @@ import { getTemp } from "../util";
 const HourlyWeather = ({ data }) => {
   return (
     <div className="my-6">
-      <div className="flex gap-4 ">
+      <div className="flex gap-4 justify-between">
         {data.map((item, i) => {
           if (i % 3 !== 0) return;
           const { dt, weather, temp } = item;
@@ -31,7 +31,7 @@ const HourlyWeather = ({ data }) => {
                 {hour}
                 {AmPm}
               </p>
-              <div className="img-container w-12 h-12 mb-2">
+              <div className="-container w-12 h-12 mb-2">
                 <img
                   src={getWeatherImg(main)}
                   alt=""
